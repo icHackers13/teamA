@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+	  #photo-panel {
+        background: #fff;
+        padding: 5px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 300px;
+        max-height: 300px;
+        font-size: 14px;
+        font-family: Arial;
+        border: 1px solid #ccc;
+        box-shadow: -2px 2px 2px rgba(33, 33, 33, 0.4);
+        display: none;
+      }
+	  #filter {
+        padding: 5px 10px;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-top: 0;
+      }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6rECnUtSIQA1EGyP6LKatsBY2-sDFIgk&sensor=true">
+    </script>
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=panoramio&sensor=true"></script>
+    <script type="text/javascript">
+	  function initialize() {
+	    var bigBen = new google.maps.LatLng(51.500782, -0.124669);
+		var seattle = new google.maps.LatLng(47.651743, -122.349243);
+		
+        var mapOptions = {
+          center: bigBen,
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+		
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+			
+		var panoramioLayer = new google.maps.panoramio.PanoramioLayer();
+        panoramioLayer.setMap(map);
+		
+		var tag = document.getElementById('tag');
+		var button = document.getElementById('filter-button');
+		
+		var photoDiv = document.getElementById('photoPanel');
+	//	map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);
+		
+		map.controls[google.maps.ControlPosition.TOP].push(
+            document.getElementById('filter'));
+		
+		google.maps.event.addListener(panoramioLayer, 'click', function(photo) {
+          var li = document.createElement('li');
+          var link = document.createElement('a');
+          link.innerHTML = photo.featureDetails.title + ': ' +
+              photo.featureDetails.author;
+          link.setAttribute('href', photo.featureDetails.url);
+          li.appendChild(link);
+          photoPanel.appendChild(li);
+          photoPanel.style.display = 'block';
+        });
+      }
+	  google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body onload="initialize()">
+    <ul id="photo-panel">
+      <li><strong>Photos clicked</strong></li>
+    </ul>
+	<div id="filter">
+      <input id="tag" value="Big Ben">
+      <button id="filter-button">Filter on Tag</button>
+    </div>
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+  </body>
+</html>
