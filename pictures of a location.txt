@@ -23,7 +23,7 @@ TO PUT IN HEAD:
 //-------------------------------------------------------
 	<div id="wapiblock"></div>
 	<script type="text/javascript">
-		var place = 'big ben';
+		var place = 'big ben';        
 	var myWidget = new panoramio.PhotoWidget('wapiblock', {'tag': place}, myOptions);
 		myWidget.setPosition(0);
 		var myOptions = {
