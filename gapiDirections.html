@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Google Maps JavaScript API v3 Example: Directions Simple</title>
+    <link href="https://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+      var directionDisplay;
+      var directionsService = new google.maps.DirectionsService();
+      var map;
+
+      function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var london = new google.maps.LatLng(51.499669,-0.176241);
+        var mapOptions = {
+          zoom:10,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          center: london
+        }
+        map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+        directionsDisplay.setMap(map);
+      }
+
+      function calcRoute() {
+        var start = document.getElementById('start').value;
+        var end = document.getElementById('end').value;
+        var request = {
+            origin:start,
+            destination:end,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          }
+        });
+      }
+    </script>
+  </head>
+  <body onload="initialize()">
+    <div>
+    <b>Start: </b>
+    <select id="start" onchange="calcRoute();">
+      <option value="royal school of mines">origin</option>
+    </select>
+    <b>End: </b>
+    <select id="end" onchange="calcRoute();">
+      <option value="buckingham palace">Buckingham Palace</input>
+      <option value="hyde park">Hyde Park</input>
+      <option value="covent gardens, london">Covent Gardens</input>
+      <option value="wimbledon tennis championships, church road, wimbledon, london">Wimbledon</input>
+      <option value="natural history museum, london">Natural History Museum</input>
+      <option value="houses of parliment, london">Houses of Parliment</input>
+      <option value="big ben, london">Big Ben</input>
+      <option value="london eye">London Eye</option>
+      <option value="olympic stadium, london">Olympic Stadium</option>
+      <option value="the moon">The Moon</option>
+    </select>
+    </div>
+    <div id="map_canvas" style="top:30px;"></div>
+  </body>
+</html>
