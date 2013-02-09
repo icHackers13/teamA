@@ -1,4 +1,11 @@
 teamA
 =====
 
-icHackathon1
+icHackathon13 team A
+
+Members:
+
+Lawrence
+Honza
+Fady
+Jose
