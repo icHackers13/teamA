@@ -29,15 +29,15 @@
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6rECnUtSIQA1EGyP6LKatsBY2-sDFIgk&sensor=true">
     </script>
-	<script src="https://maps.googleapis.com/maps/api/js?libraries=panoramio&sensor=true"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=panoramio&sensor=false"></script>
     <script type="text/javascript">
 	  function initialize() {
 	    var bigBen = new google.maps.LatLng(51.500782, -0.124669);
-		var seattle = new google.maps.LatLng(47.651743, -122.349243);
+	//	var seattle = new google.maps.LatLng(47.651743, -122.349243);
 		
         var mapOptions = {
           center: bigBen,
-          zoom: 16,
+          zoom: 13,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 		
@@ -50,8 +50,10 @@
 		var tag = document.getElementById('tag');
 		var button = document.getElementById('filter-button');
 		
+		panoramioLayer.setTag(tag.value);
+				
 		var photoDiv = document.getElementById('photoPanel');
-	//	map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);
+		map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);
 		
 		map.controls[google.maps.ControlPosition.TOP].push(
             document.getElementById('filter'));
