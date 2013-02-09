@@ -1,0 +1,114 @@
+html, body {
+    margin:0;
+    padding:0;
+    height:100%; /* needed for container min-height */
+}
+div#container {
+    height:100%;
+    width:100%;
+    /*height:auto !important;  real browsers */
+     height:100%; /* IE6: treaded as min-height*/
+    min-height:100%; /* real browsers */
+    margin:0 auto;
+    min-height:100%;
+    overflow:hidden;
+    position:relative;
+}
+div#header {
+    height:50px;
+    position:relative;
+}
+div#leftCol {
+    left:0;
+    bottom:0;
+    top:0;
+    overflow:hidden;
+    padding-bottom:35px;
+    margin-top:55px;
+    position:absolute;
+    width:300px;
+}
+div#content {
+    right:0;
+    bottom:0;
+    top:0;
+    left: 300px;
+    overflow:hidden;
+    padding-bottom:35px;
+    margin-top:55px;
+    position:absolute;
+}
+div#footer {
+    position:absolute;
+    clear:both;
+    width:100%;
+    height:20px;
+    bottom:0; /* stick to bottom */
+    background:#fff;
+    /*border-top:1px solid #ccc;*/
+}
+.paddedContent {
+    height:100%;
+    margin: 5px;
+    /*border: solid 1px red;*/
+}
+
+#confirm{
+	margin: 20px 0 0 10px;
+
+}
+
+
+#format { margin-top: 2em; }
+
+
+
+body{
+		font: 62.5% "Trebuchet MS", sans-serif;
+		margin; 0px 0px 0px 50px;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+
+
+	/*WAPIO*/
+	#wapiblock{ padding:10px;
+		border: 10px;}
+      #wapiblock .panoramio-wapi-images {
+        background-color: white;
+      }
+      #wapiblock .panoramio-wapi-tos {
+        background-color: white !important;
+      }
