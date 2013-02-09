@@ -1,0 +1,36 @@
+TO PUT IN HEAD: 
+//-----------------------------------------------------------------
+  <head>
+    <style type="text/css">
+      #wapiblock .panoramio-wapi-images {
+        background-color: white;
+      }
+      #wapiblock .panoramio-wapi-tos {
+        background-color: white !important;
+      }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6rECnUtSIQA1EGyP6LKatsBY2-sDFIgk&sensor=true">
+    </script>
+	<script type="text/javascript" src="http://www.panoramio.com/wapi/wapi.js?v=1"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=panoramio&sensor=false"></script>
+  </head>
+ //------------------------------------------------------------------ 
+  
+  
+ TO PUT IN BODY:
+
+//-------------------------------------------------------
+	<div id="wapiblock"></div>
+	<script type="text/javascript">
+		var place = 'big ben';        
+	var myWidget = new panoramio.PhotoWidget('wapiblock', {'tag': place}, myOptions);
+		myWidget.setPosition(0);
+		var myOptions = {
+			'width': 300,
+			'height': 200
+		};
+	</script>
+//------------------------------------------------------
+  </body>
+</html>
