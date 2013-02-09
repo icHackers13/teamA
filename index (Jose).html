@@ -11,18 +11,42 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBimLpXLf_6KvLfP34dA6fqTk6O4ucZhDU&sensor=true">
     </script>
     <script type="text/javascript">
+      var localSearch = new GlocalSearch();
       function initialize() {
         var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
+          center: new google.maps.LatLng(51.498, -0.1771),
           zoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
       }
+     function usePointFromPostcode(postcode, callbackFunction) {
+  
+  localSearch.setSearchCompleteCallback(null, 
+    function() {
+      
+      if (localSearch.results[0]) {    
+        var resultLat = localSearch.results[0].lat;
+        var resultLng = localSearch.results[0].lng;
+        var point = new GLatLng(resultLat,resultLng);
+        callbackFunction(point);
+      }else{
+        alert("Postcode not found!");
+      }
+    });  
+    
+  localSearch.execute(postcode + ", UK");
+
+
+}
     </script>
   </head>
   <body onload="initialize()">
-    <div id="map_canvas" style="width:100%; height:100%"></div>
+    <div id="map_canvas" style="width:50%; height:50%"></div>
+    <form>
+	<p>PostCode</p><input id="postCode" />	
+   </form>
+  <button type="button" onclick= "usePointFromPostcode(postcode, callbackFunction )">Click Me!</button>
   </body>
 </html>
