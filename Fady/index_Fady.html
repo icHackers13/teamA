@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <link href="jquery/css/smoothness/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+    <script src="jquery/js/jquery-1.9.0.js"></script>
+    <script src="jquery/js/jquery-ui-1.10.0.custom.js"></script>
+
+    <script type="text/javascript" src="runner.js"></script>
+
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBimLpXLf_6KvLfP34dA6fqTk6O4ucZhDU&sensor=true">
+    </script>
+
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          disableDefaultUI: false,
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+      }
+    </script>
+  </head>
+  <body onload="initialize()">
+    <div id="map_canvas" style="width:80%; height:100%"></div>
+  </body>
+</html>
