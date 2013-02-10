@@ -14,7 +14,8 @@ var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&
       var originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
       
     var request = {
-        location: ichacklocation,
+        name: '',
+	location: ichacklocation,
         radius: '500000',
         types: [
         'amusement_park',
@@ -36,12 +37,7 @@ var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&
       var bounds = new google.maps.LatLngBounds();
       var markersArray = [];
       origin = 'Royal School of Mines, London';
-      destinations = [
-      'Buckingham Palace, London, England',
-      'Trafalgar Square, London, England',
-      'Picadilly Circus, London, England',
-      'Hyde Park, London, England',
-      'Covent Garden, London, England']
+            
 
         infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
@@ -63,7 +59,7 @@ var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
           map: map,
-          position: place.geometry.location
+   //       position: place.geometry.location
         });
 
         google.maps.event.addListener(marker, 'click', function() {
@@ -127,13 +123,14 @@ var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&
 //calculateDistances();
 
 function deleteOverlays() {
+
         if (markersArray) {
           for (i in markersArray) {
             markersArray[i].setMap(null);
           }
           markersArray.length = 0;
         }
-      }
+     }
 
 
       function addMarker(location, isDestination) {
@@ -152,6 +149,10 @@ function deleteOverlays() {
               position: results[0].geometry.location,
               icon: icon
             });
+	            google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
             markersArray.push(marker);
           } else {
             alert('Geocode was not successful for the following reason: '
