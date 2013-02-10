@@ -1,4 +1,4 @@
-function run() {
+4function run() {
 
   var ichacklocation = new google.maps.LatLng(51.499767, -0.176259);
     // ichacklocation = new google.maps.LatLng(51.499767, -0.176259);
@@ -115,7 +115,7 @@ var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&
 	                       $( "#final" ).append(
 	                       origins[i] + ' to ' + destinations[j]
 	                       + ': ' + results[j].distance.text + ' in '
-	                       + results[j].duration.text + '<br>'
+	                       + results[j].duration.text + '<br><br><br><br>'
 	                       );
 		          }//if
               	     } //inner for
