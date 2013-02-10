@@ -31,7 +31,9 @@ var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&
         'establishment']
            };
 
-      durationLimiter = secConverter(60);
+			
+	  var minutes = parseInt(prompt("Please enter number of minutes you have", ""));
+      durationLimiter = secConverter(minutes);
       var map;
       var geocoder;
       var bounds = new google.maps.LatLngBounds();
