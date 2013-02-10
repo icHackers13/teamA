@@ -1,4 +1,4 @@
-function run() {
+4function run() {
 
   var ichacklocation = new google.maps.LatLng(51.499767, -0.176259);
     // ichacklocation = new google.maps.LatLng(51.499767, -0.176259);
@@ -55,7 +55,9 @@ var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&
             createMarker(results[i], i);
           }
         }
-      }
+      
+	calculateDistances();
+	}
 
       function createMarker(place, i) {
         var placeLoc = place.geometry.location;
@@ -69,58 +71,60 @@ var destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&
           infowindow.open(map, this);
         });
        places[i] = placeLoc;
-      }
+      
+	}
 
       google.maps.event.addDomListener(window, 'load', initialize);
 
 
-function calculateDistances() {
-        origin=prompt("please enter your location","");
+	function calculateDistances() {
+        	origin=prompt("please enter your location","");
 
-        var service = new google.maps.DistanceMatrixService();
-        service.getDistanceMatrix(
-          {
-            origins: [origin],
-            destinations: destinations,
-            travelMode: google.maps.TravelMode.WALKING,
-            unitSystem: google.maps.UnitSystem.METRIC,
-            avoidHighways: false,
-            avoidTolls: false
-          }, callbackDuration);
+        	var service = new google.maps.DistanceMatrixService();
+	        service.getDistanceMatrix(
+	          {
+	            origins: [origin],
+	            destinations: places,
+	            travelMode: google.maps.TravelMode.WALKING,
+	            unitSystem: google.maps.UnitSystem.METRIC,	
+	            avoidHighways: false,
+        	    avoidTolls: false
+        	  }, callbackDuration);
       }
 
       function callbackDuration(response, status) {
-        if (status != google.maps.DistanceMatrixStatus.OK) {
-          alert('Error was: ' + status);
-        } else {
-          var origins = response.originAddresses;
-          var destinations = response.destinationAddresses;
-          // var outputDiv = document.getElementById('outputDiv');
-          // outputDiv.innerHTML = '';
-          deleteOverlays();
+ 	     if (status != google.maps.DistanceMatrixStatus.OK) {
+ 	         alert('Error was: ' + status)
+	       } else {
+	          var origins = response.originAddresses;
+	          var destinations = response.destinationAddresses;
+	          // var outputDiv = document.getElementById('outputDiv');
+	          // outputDiv.innerHTML = '';
+	          deleteOverlays();
 
-          for (var i = 0; i < origins.length; i++) {
-            var results = response.rows[i].elements;
-            addMarker(origins[i], false);
-             for (var j = 0; j < results.length; j++) {
-                  if(results[j].duration.value<durationLimiter){
+	          for (var i = 0; i < origins.length; i++) {
+	            var results = response.rows[i].elements;
+	            addMarker(origins[i], false);
+	             for (var j = 0; j < results.length; j++) {
+	                  if(results[j].duration.value<durationLimiter){
                     
-                       addMarker(destinations[j], true);
-                       // outputDiv.innerHTML += origins[i] + ' to ' + destinations[j]
-                       // + ': ' + results[j].distance.text + ' in '
-                       // + results[j].duration.text + '<br>'
-                       $( "#final" ).append(
-                       origins[i] + ' to ' + destinations[j]
-                       + ': ' + results[j].distance.text + ' in '
-                       + results[j].duration.text + '<br>'
-                       );
-                  }//if
-              } //inner for
-          }//out for
+	                       addMarker(destinations[j], true);
+	                       // outputDiv.innerHTML += origins[i] + ' to ' + destinations[j]
+	                       // + ': ' + results[j].distance.text + ' in '
+	                       // + results[j].duration.text + '<br>'
+	                       $( "#final" ).append(
+	                       origins[i] + ' to ' + destinations[j]
+	                       + ': ' + results[j].distance.text + ' in '
+	                       + results[j].duration.text + '<br><br><br><br>'
+	                       );
+		          }//if
+              	     } //inner for
+                 }//out for
         }//else
       }//callbackDuration
 
-calculateDistances();
+
+//calculateDistances();
 
 function deleteOverlays() {
         if (markersArray) {
@@ -159,5 +163,4 @@ function deleteOverlays() {
         function secConverter(mins){// time is in mins
     return (mins*60);
         }
-
 }
